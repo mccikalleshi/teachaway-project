@@ -23,6 +23,8 @@ export function API({ stack }: StackContext) {
       "GET /test": "packages/functions/src/test.test",
       "POST /todo": "packages/functions/src/todo.create",
       "GET /starships": "packages/functions/src/starships.list",
+      "PUT /starship/{id}": "packages/functions/src/starships.create",
+      "GET /starship/{id}": "packages/functions/src/starships.get",
     },
   });
 

@@ -3,7 +3,8 @@ import { connect } from "@planetscale/database";
 export function getIdFromUrl(url: string) {
   const split = url.split("/").filter((el) => !!el);
   const id = split[split.length - 1];
-  return id;
+
+  return Number(id);
 }
 
 const config = {
