@@ -12,12 +12,12 @@ export function API({ stack }: StackContext) {
       },
     },
     routes: {
-      "GET /starships": "packages/functions/src/starships.list",
-      "PUT /starship/{id}": "packages/functions/src/starships.create",
-      "GET /starship/{id}": "packages/functions/src/starships.get",
-      "GET /vehicles": "packages/functions/src/starships.list",
-      "PUT /vehicle/{id}": "packages/functions/src/starships.create",
-      "GET /vehicle/{id}": "packages/functions/src/starships.get",
+      "GET /starships": "packages/functions/src/methods.list",
+      "PUT /starship/{id}": "packages/functions/src/methods.create",
+      "GET /starship/{id}": "packages/functions/src/methods.get",
+      "GET /vehicles": "packages/functions/src/methods.list",
+      "PUT /vehicle/{id}": "packages/functions/src/methods.create",
+      "GET /vehicle/{id}": "packages/functions/src/methods.get",
     },
   });
 

@@ -6,7 +6,7 @@ export const list = ApiHandler(async (_evt) => {
   const queryParams = _evt.queryStringParameters;
   const page = queryParams?.page ? Number(queryParams.page) : 1;
   const table = getTable(_evt);
-  const starShips = await StarShips.getStarships({ page, table });
+  const starShips = await StarShips.getAll({ page, table });
 
   return !!starShips
     ? {
@@ -29,7 +29,7 @@ export const get = ApiHandler(async (evt) => {
 
   const table = getTable(evt);
 
-  const starship = await StarShips.getStarship({ id: Number(id), table });
+  const starship = await StarShips.getOne({ id: Number(id), table });
 
   return !!starship
     ? {
@@ -55,7 +55,7 @@ export const create = ApiHandler(async (evt) => {
   const body = evt.body;
   const parsed = body ? JSON.parse(body || "") : "";
 
-  const starship = await StarShips.createStarship({
+  const starship = await StarShips.createOne({
     id: Number(id),
     body: parsed,
     params,
