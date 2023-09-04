@@ -32,7 +32,13 @@ export type APIResponse = {
   results: Starship[];
 };
 
+export const paramsType = z.object({
+  action: z.enum(["increment", "decrement"]),
+});
+
 export type DbType = {
   id: number;
   total_nr: number;
 };
+
+export type Tables = "starships" | "vehicles";

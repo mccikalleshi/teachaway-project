@@ -1,10 +1,12 @@
 import { ApiHandler } from "sst/node/api";
 import { StarShips } from "@my-sst-app/core/starships";
+import { getTable } from "./helpers";
 
 export const list = ApiHandler(async (_evt) => {
   const queryParams = _evt.queryStringParameters;
   const page = queryParams?.page ? Number(queryParams.page) : 1;
-  const starShips = await StarShips.getStarships({ page });
+  const table = getTable(_evt);
+  const starShips = await StarShips.getStarships({ page, table });
 
   return !!starShips
     ? {
@@ -25,7 +27,9 @@ export const get = ApiHandler(async (evt) => {
       body: JSON.stringify({ error: "No id provided" }),
     };
 
-  const starship = await StarShips.getStarship({ id: Number(id) });
+  const table = getTable(evt);
+
+  const starship = await StarShips.getStarship({ id: Number(id), table });
 
   return !!starship
     ? {
@@ -45,12 +49,17 @@ export const create = ApiHandler(async (evt) => {
       statusCode: 400,
       body: JSON.stringify({ error: "No id provided" }),
     };
+
+  const params = evt.queryStringParameters;
+  const table = getTable(evt);
   const body = evt.body;
-  const parsed = JSON.parse(body || "");
+  const parsed = body ? JSON.parse(body || "") : "";
 
   const starship = await StarShips.createStarship({
     id: Number(id),
     body: parsed,
+    params,
+    table,
   });
 
   return !!starship.success
