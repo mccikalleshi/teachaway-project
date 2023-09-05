@@ -1,4 +1,5 @@
 import { connect } from "@planetscale/database";
+import { Config } from "sst/node/config";
 
 export function getIdFromUrl(url: string) {
   const split = url.split("/").filter((el) => !!el);
@@ -7,8 +8,10 @@ export function getIdFromUrl(url: string) {
   return Number(id);
 }
 
+const database_url = Config.database_url;
+
 const config = {
-  url: 'mysql://dgklj7bt8i2nc3wf39nn:pscale_pw_9KQAey7jMpVTY4ZSrzIzs6NJKSzdMDX3d18q0rJnblI@aws.connect.psdb.cloud/teachaway-project?ssl={"rejectUnauthorized":true}',
+  url: database_url,
 };
 
 export const db = connect(config);

@@ -1,4 +1,4 @@
-import { StackContext, Api, Config } from "sst/constructs";
+import { StackContext, Api, Config, StaticSite } from "sst/constructs";
 
 export function API({ stack }: StackContext) {
   const database = new Config.Parameter(stack, "database_url", {
@@ -8,7 +8,7 @@ export function API({ stack }: StackContext) {
   const api = new Api(stack, "api", {
     defaults: {
       function: {
-        bind: [],
+        bind: [database],
       },
     },
     routes: {
@@ -21,7 +21,17 @@ export function API({ stack }: StackContext) {
     },
   });
 
+  const web = new StaticSite(stack, "React", {
+    path: "packages/web",
+    buildOutput: "dist",
+    buildCommand: "pnpm run build",
+    environment: {
+      VITE_APP_API_URL: api.url,
+    },
+  });
+
   stack.addOutputs({
     ApiEndpoint: api.url,
+    WebEndpoint: web.url,
   });
 }
