@@ -82,28 +82,33 @@ export async function getAll({
   page?: number;
   table: Tables;
 }) {
-  const response = await Promise.all([
+  const response = (await Promise.all([
     await fetch(`https://swapi.dev/api/${table}/?page=${page}`).then(
       async (res) => (await res.json()) as APIResponse
     ),
     await db.execute(`select * from ${table}`),
-  ]).then((res) => {
-    const [swapi, db]: [APIResponse, ExecutedQuery] = res;
-    const data = swapi.results.map((starship) => {
-      const id = getIdFromUrl(starship.url);
-      const dbRows = db.rows as DbType[];
-      const dbCount = dbRows.find((row) => row.id === id);
-      return {
-        id,
-        total_nr: dbCount ? dbCount.total_nr : 0,
-        ...starship,
-      };
-    });
+  ])
+    .then((res) => {
+      const [swapi, db]: [APIResponse, ExecutedQuery] = res;
+      const data = swapi.results.map((starship) => {
+        const id = getIdFromUrl(starship.url);
+        const dbRows = db.rows as DbType[];
+        const dbCount = dbRows.find((row) => row.id === id);
+        return {
+          id,
+          total_nr: dbCount ? dbCount.total_nr : 0,
+          table,
+          ...starship,
+        };
+      }) as Starship[];
 
-    return data;
-  });
+      return { success: true, data };
+    })
+    .catch((err) => {
+      return { success: false, error: err };
+    })) as { success: true; data: Starship[] } | { success: false; error: any };
 
-  return response;
+  return response.success ? response.data : "API Limit Reached";
 }
 
 export async function createOne({

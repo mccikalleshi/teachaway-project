@@ -4,7 +4,7 @@ import { getTable } from "./helpers";
 
 export const list = ApiHandler(async (_evt) => {
   const queryParams = _evt.queryStringParameters;
-  const page = queryParams?.page ? Number(queryParams.page) : 1;
+  const page = queryParams?.page ? Number(queryParams.page || 1) : 1;
   const table = getTable(_evt);
   const starShips = await StarShips.getAll({ page, table });
 

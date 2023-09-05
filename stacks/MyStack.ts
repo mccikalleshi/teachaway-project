@@ -21,17 +21,20 @@ export function API({ stack }: StackContext) {
     },
   });
 
-  const web = new StaticSite(stack, "React", {
-    path: "packages/web",
+  const web = new StaticSite(stack, "react", {
+    path: "packages/web/",
     buildOutput: "dist",
     buildCommand: "pnpm run build",
     environment: {
       VITE_APP_API_URL: api.url,
     },
+    dev: {
+      url: "http://localhost:3000",
+    },
   });
 
   stack.addOutputs({
+    web: web.url,
     ApiEndpoint: api.url,
-    WebEndpoint: web.url,
   });
 }
