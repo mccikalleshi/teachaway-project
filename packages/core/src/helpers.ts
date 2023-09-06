@@ -1,4 +1,5 @@
 import { connect } from "@planetscale/database";
+import fetch from "node-fetch";
 import { Config } from "sst/node/config";
 
 export function getIdFromUrl(url: string) {
@@ -11,7 +12,8 @@ export function getIdFromUrl(url: string) {
 const database_url = Config.database_url;
 
 const config = {
-  url: database_url,
+  fetch,
+  url: 'mysql://dgklj7bt8i2nc3wf39nn:pscale_pw_9KQAey7jMpVTY4ZSrzIzs6NJKSzdMDX3d18q0rJnblI@aws.connect.psdb.cloud/teachaway-project?ssl={"rejectUnauthorized":true}',
 };
 
 export const db = connect(config);

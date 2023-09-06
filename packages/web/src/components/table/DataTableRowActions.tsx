@@ -69,12 +69,13 @@ export function DataTableRowActions({ row }: { row: Row<CommonType> }) {
       queryClient.invalidateQueries([table]);
     },
     onError(error) {
-      toast({
-        title: "Error",
-        description: error?.message,
-        variant: "destructive",
-        duration: 4000,
-      });
+      if (error instanceof Error)
+        toast({
+          title: "Error",
+          description: error?.message,
+          variant: "destructive",
+          duration: 4000,
+        });
     },
   });
 

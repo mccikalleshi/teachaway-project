@@ -21,15 +21,19 @@ export type CommonType = {
   id: number;
 };
 
-export type Starship = {
+export type OnlyStarship = {
   starship_class: string;
   hyperdrive_rating: string;
   MGLT: string;
-} & CommonType;
+};
 
-export type Vehicle = {
+export type OnlyVehicle = {
   vehicle_class: string;
-} & CommonType;
+};
+
+export type Starship = OnlyStarship & CommonType;
+
+export type Vehicle = OnlyStarship & CommonType;
 
 export type StarshipOrVehicle<T> = T extends "starships" ? Starship : Vehicle;
 
