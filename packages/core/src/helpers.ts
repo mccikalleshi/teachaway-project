@@ -13,7 +13,7 @@ const database_url = Config.database_url;
 
 const config = {
   fetch,
-  url: 'mysql://dgklj7bt8i2nc3wf39nn:pscale_pw_9KQAey7jMpVTY4ZSrzIzs6NJKSzdMDX3d18q0rJnblI@aws.connect.psdb.cloud/teachaway-project?ssl={"rejectUnauthorized":true}',
+  url: database_url,
 };
 
 export const db = connect(config);

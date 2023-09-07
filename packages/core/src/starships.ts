@@ -44,7 +44,7 @@ export async function incrementOrDecrement({
 
     return {
       success: true,
-      data: { id, total: count },
+      data: { id, total_nr: count },
     };
   }
 
@@ -72,7 +72,7 @@ export async function getOne({ id, table }: { id: number; table: Tables }) {
 
   const total = dbStarship ? dbStarship.total_nr : 0;
 
-  return { ...apiStarship, total, id };
+  return { ...apiStarship, total_nr: total, id };
 }
 
 export async function getAll({

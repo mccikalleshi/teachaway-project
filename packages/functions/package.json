@@ -13,6 +13,7 @@
     "vitest": "^0.34.3"
   },
   "dependencies": {
-    "@planetscale/database": "^1.11.0"
+    "@planetscale/database": "^1.11.0",
+    "node-fetch": "^3.3.2"
   }
 }

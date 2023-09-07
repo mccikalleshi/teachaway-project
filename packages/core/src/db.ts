@@ -59,7 +59,7 @@ export async function incrementOrDecrementDb({
     success: true,
     data: {
       id,
-      total: dbStarship.total_nr + (action === "increment" ? 1 : -1),
+      total_nr: dbStarship.total_nr + (action === "increment" ? 1 : -1),
     },
   };
 }

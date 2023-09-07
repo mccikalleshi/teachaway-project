@@ -28,9 +28,10 @@ export function API({ stack }: StackContext) {
     environment: {
       VITE_APP_API_URL: api.url,
     },
-    dev: {
-      url: "http://localhost:3000",
-    },
+  });
+
+  new Config.Parameter(stack, "ApiEndpoint", {
+    value: api.url,
   });
 
   stack.addOutputs({

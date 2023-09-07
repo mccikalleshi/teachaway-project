@@ -24,13 +24,6 @@ export const TabComponent = ({ type }: Props) => {
     staleTime: 1000 * 60 * 6,
   });
 
-  console.log({
-    isLoading,
-    data,
-    error,
-    isFetching,
-  });
-
   useEffect(() => {
     if (isFetching) {
       toast({

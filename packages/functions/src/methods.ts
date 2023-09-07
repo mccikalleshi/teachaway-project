@@ -62,7 +62,7 @@ export const create = ApiHandler(async (evt) => {
     table,
   });
 
-  return !!starship.success
+  return !!starship.success && !starship?.error
     ? {
         statusCode: 200,
         body: JSON.stringify(starship.data),
