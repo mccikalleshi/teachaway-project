@@ -19,6 +19,7 @@ In the files is also included .env file where is stored the connection to the da
 Firstly you should download aws cli and configure it with the IAM user credentials
 ```bash
 pip install awscli
+aws configure
 ```
 
 
