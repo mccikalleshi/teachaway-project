@@ -12,7 +12,6 @@ The main purpose of this project is to extend the data of the swapi api by savin
 You can find the frontend code inside the packages/web folder.
 You can find the backend code inside the packages/core and packages/functions folder.
 To see the way routes are created for the backend check stacks/MyStack.
-In the files is also included .env file where is stored the connection to the database url so please don't misuse it 😀 
 
 
 ## Installation
